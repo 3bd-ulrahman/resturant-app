@@ -16,7 +16,7 @@ $webGuard = [
     |
     */
 
-    'guard' => 'web',
+    'guard' => 'user',
 
     /*
     |--------------------------------------------------------------------------
@@ -61,7 +61,7 @@ $webGuard = [
     |
     */
 
-    'home' => RouteServiceProvider::HOME,
+    'home' => 'user' . RouteServiceProvider::HOME,
 
     /*
     |--------------------------------------------------------------------------
@@ -74,7 +74,7 @@ $webGuard = [
     |
     */
 
-    'prefix' => '',
+    'prefix' => 'user',
 
     'domain' => null,
 
@@ -143,7 +143,6 @@ $webGuard = [
             // 'window' => 0,
         ]),
     ],
-
 ];
 
 $adminGuard = [
@@ -217,7 +216,7 @@ $adminGuard = [
     |
     */
 
-    'prefix' => 'admin',
+    'prefix' => 'admin/',
 
     'domain' => null,
 
@@ -285,7 +284,6 @@ $adminGuard = [
             // 'window' => 0,
         ]),
     ],
-
 ];
 
 if (!app()->runningInConsole()) {

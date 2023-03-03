@@ -10,7 +10,10 @@ use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Http\Responses\LoginResponse;
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -19,7 +22,28 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->instance(LoginResponse::class, new class implements LoginResponseContract {
+            /**
+             * Create an HTTP response that represents the object.
+             *
+             * @param  \Illuminate\Http\Request  $request
+             * @return \Symfony\Component\HttpFoundation\Response
+             */
+            public function toResponse($request)
+            {
+                // return $request->wantsJson()
+                //     ? response()->json(['two_factor' => false])
+                //     : redirect(config('fortify.home'));
+                if ($request->wantsJson()) {
+                    return response()->json(['two_factor' => false]);
+                } else {
+                    return Str::contains(session()->get('url.intended'), config('fortify.prefix'))
+                        ? redirect()->intended()
+                        : redirect(config('fortify.home'));
+                }
+
+            }
+        });
     }
 
     /**
