@@ -3,7 +3,7 @@
 use App\Providers\RouteServiceProvider;
 use Laravel\Fortify\Features;
 
-$webGuard = [
+$userGuard = [
 
     /*
     |--------------------------------------------------------------------------
@@ -203,7 +203,7 @@ $adminGuard = [
     |
     */
 
-    'home' => 'admin' . RouteServiceProvider::HOME,
+    'home' => 'dashboard' . RouteServiceProvider::HOME,
 
     /*
     |--------------------------------------------------------------------------
@@ -216,7 +216,7 @@ $adminGuard = [
     |
     */
 
-    'prefix' => 'admin/',
+    'prefix' => 'dashboard/',
 
     'domain' => null,
 
@@ -287,7 +287,7 @@ $adminGuard = [
 ];
 
 if (!app()->runningInConsole()) {
-    return request()->is('admin/*') ? $adminGuard : $webGuard;
+    return request()->is('dashboard/*') ? $adminGuard : $userGuard;
 } else {
     return [];
 }

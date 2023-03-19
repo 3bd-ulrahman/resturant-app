@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Menu;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 
-class MenuController extends Controller
+class ReservationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $menus = Menu::all();
+        $reservations = Reservation::all();
 
-        return view('admin.menus.index', compact('menus'));
+        return view('dashboard.reservations.index', compact('reservations'));
     }
 
     /**
@@ -23,7 +23,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('admin.menus.create');
+        return view('dashboard.reservations.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class MenuController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Menu $menu)
+    public function show(Reservation $reservation)
     {
         //
     }
@@ -45,7 +45,7 @@ class MenuController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Menu $menu)
+    public function edit(Reservation $reservation)
     {
         //
     }
@@ -53,7 +53,7 @@ class MenuController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Menu $menu)
+    public function update(Request $request, Reservation $reservation)
     {
         //
     }
@@ -61,7 +61,7 @@ class MenuController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Menu $menu)
+    public function destroy(Reservation $reservation)
     {
         //
     }

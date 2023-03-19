@@ -11,6 +11,8 @@
   <link rel="preconnect" href="https://fonts.bunny.net">
   <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+  @stack('styles')
+
   <!-- Scripts -->
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -38,19 +40,19 @@
         </button>
       </div>
       <nav :class="{ 'block': open, 'hidden': !open }" class="flex-grow px-4 pb-4 md:block md:pb-0 md:overflow-y-auto">
-        <x-admin.nav-link :href="route('admin.categories.index')" :active="request()->routeIs('admin.categories.index')">
+        <x-admin.nav-link :href="route('dashboard.categories.index')" :active="request()->routeIs('admin.categories.index')">
           {{ __('Categories') }}
         </x-admin.nav-link>
 
-        <x-admin.nav-link :href="route('admin.menus.index')" :active="request()->routeIs('admin.menus.index')">
+        <x-admin.nav-link :href="route('dashboard.menus.index')" :active="request()->routeIs('admin.menus.index')">
           {{ __('Menus') }}
         </x-admin.nav-link>
 
-        <x-admin.nav-link :href="route('admin.tables.index')" :active="request()->routeIs('admin.tables.index')">
+        <x-admin.nav-link :href="route('dashboard.tables.index')" :active="request()->routeIs('admin.tables.index')">
           {{ __('Tables') }}
         </x-admin.nav-link>
 
-        <x-admin.nav-link :href="route('admin.reservations.index')" :active="request()->routeIs('admin.reservation.index')">
+        <x-admin.nav-link :href="route('dashboard.reservations.index')" :active="request()->routeIs('admin.reservation.index')">
           {{ __('Reservation') }}
         </x-admin.nav-link>
 
@@ -92,6 +94,6 @@
 
   </div>
 
-  {{ $scripts ?? '' }}
+  @stack('scripts')
 </body>
 </html>

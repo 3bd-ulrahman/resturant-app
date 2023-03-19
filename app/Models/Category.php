@@ -19,6 +19,12 @@ class Category extends Model
         'image'
     ];
 
+    // RelationShips
+    public function menus()
+    {
+        return $this->belongsToMany(Menu::class, 'category_menu', 'category_id', 'menu_id');
+    }
+
     protected static function booted(): void
     {
         static::addGlobalScope('accessor', function (Builder $builder) {

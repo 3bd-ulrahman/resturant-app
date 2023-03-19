@@ -9,7 +9,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
       <div class="flex justify-end mb-2">
-        <a href="{{ route('admin.categories.create') }}"
+        <a href="{{ route('dashboard.categories.create') }}"
           class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">
           New Category
         </a>
@@ -29,7 +29,7 @@
                 Image
               </th>
               <th scope="col" class="px-6 py-3">
-                Edit
+                Actions
               </th>
             </tr>
           </thead>
@@ -46,11 +46,11 @@
                   <img src="{{ $category->image_url }}" class="w-16 h-16 rounded" alt="">
                 </td>
                 <td class="px-6 py-4">
-                  <a href="{{ route('admin.categories.edit', $category->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                  <a href="{{ route('dashboard.categories.edit', $category->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                     Edit
                   </a>
                   &emsp;
-                  <form action="{{ route('admin.categories.destroy', $category->id) }}" method="post"
+                  <form action="{{ route('dashboard.categories.destroy', $category->id) }}" method="post"
                     onsubmit="return confirm('Are you sure')"
                     class="inline">
                     @csrf

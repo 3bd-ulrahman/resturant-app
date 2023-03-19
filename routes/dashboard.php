@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\MenuController;
-use App\Http\Controllers\Admin\ReservationController;
-use App\Http\Controllers\Admin\TableController;
+use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\MenuController;
+use App\Http\Controllers\Dashboard\ReservationController;
+use App\Http\Controllers\Dashboard\TableController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,7 +13,7 @@ Route::get('index', function () {
 })->name('index');
 
 Route::get('home', function () {
-    return view('admin.index');
+    return view('dashboard.index');
 })->name('home');
 
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -9,23 +9,23 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
       <div class="flex mb-2">
-        <a href="{{ route('admin.categories.index') }}"
+        <a href="{{ route('dashboard.categories.index') }}"
           class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">
           Categories
         </a>
       </div>
 
-      <form action="{{ route('admin.categories.store') }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('dashboard.categories.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-6">
-          <x-input-label for="name" :value="__('name')" />
+          <x-input.label for="name" :value="__('name')" />
           <x-text-input id="name" class="block mt-1 w-full focus:ring-0" type="text" name="name" :value="old('name')" required autofocus autocomplete="username" />
           <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <div class="mb-6">
-          <x-input-label for="email" :value="__('description')" />
+          <x-input.label for="email" :value="__('description')" />
           <textarea rows="4" name="description"
             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:ring-0"
             placeholder="Your message..."
@@ -34,13 +34,12 @@
         </div>
 
         <div class="mb-6">
-          <x-input-label for="image" :value="__('image')" />
+          <x-input.label for="image" :value="__('image')" />
           <x-text-input id="image" class="block w-full mt-1 border border-gray-200 shadow-sm rounded-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 file:bg-transparent file:border-0 file:bg-gray-100 file:mr-4 file:py-3 file:px-4 dark:file:bg-gray-700 dark:file:text-gray-400"
             type="file"
             name="image"
             required
             autofocus
-            autocomplete="username"
           />
           <x-input-error :messages="$errors->get('image')" class="mt-2" />
           <div class="flex justify-center mt-1">
@@ -54,7 +53,7 @@
     </div>
   </div>
 
-  <x-slot:scripts>
+  @push('scripts')
     <script>
       var image = document.getElementById('image');
       image.addEventListener("change", function () {
@@ -68,5 +67,5 @@
           }
       });
     </script>
-  </x-slot:scripts>
+  @endpush
 </x-admin.app-layout>

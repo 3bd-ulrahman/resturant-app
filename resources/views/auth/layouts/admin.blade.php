@@ -38,23 +38,23 @@
         </button>
       </div>
       <nav :class="{ 'block': open, 'hidden': !open }" class="flex-grow px-4 pb-4 md:block md:pb-0 md:overflow-y-auto">
-        <x-admin.nav-link :href="route('admin.categories.index')" :active="request()->routeIs('dashboard')">
+        <x-admin.nav-link :href="route('dashboard.categories.index')" :active="request()->routeIs('dashboard')">
           Categories
         </x-admin.nav-link>
         <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-gray-200 rounded-lg dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-          href="{{ route('admin.categories.index') }}">
+          href="{{ route('dashboard.categories.index') }}">
           Categories
         </a>
         <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-          href="{{ route('admin.menus.index') }}">
+          href="{{ route('dashboard.menus.index') }}">
           Menus
         </a>
         <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-          href="{{ route('admin.tables.index') }}">
+          href="{{ route('dashboard.tables.index') }}">
           Tables
         </a>
         <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-          href="{{ route('admin.reservation.index') }}">
+          href="{{ route('dashboard.reservations.index') }}">
           Reservation
         </a>
         <div @click.away="open = false" class="relative" x-data="{ open: false }">
