@@ -15,7 +15,7 @@
         </a>
       </div>
 
-      <form action="{{ route('dashboard.menus.store') }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('dashboard.menus.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
         @csrf
 
         <div class="mb-6">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TableRequest;
 use App\Models\Table;
 use Illuminate\Http\Request;
 
@@ -29,9 +30,11 @@ class TableController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TableRequest $request)
     {
-        //
+        Table::create($request->validated());
+
+        return to_route('dashboard.tables.index');
     }
 
     /**
@@ -47,15 +50,17 @@ class TableController extends Controller
      */
     public function edit(Table $table)
     {
-        //
+        return view('dashboard.tables.edit', compact('table'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Table $table)
+    public function update(TableRequest $request, Table $table)
     {
-        //
+        $table->update($request->validated());
+
+        return to_route('dashboard.tables.index');
     }
 
     /**
@@ -63,6 +68,8 @@ class TableController extends Controller
      */
     public function destroy(Table $table)
     {
-        //
+        $table->delete();
+
+        return to_route('dashboard.tables.index');
     }
 }

@@ -22,13 +22,8 @@ images.forEach(function (element) {
 });
 
 
-let options = document.querySelectorAll('option');
-// remove the selected from option
-options.forEach(function (element) {
-    element.selected = true;
-});
-
 // multi select without ctrl
+let options = document.querySelectorAll('select[multiple] option');
 options.forEach(function (element) {
     element.addEventListener("mousedown", function (e) {
         e.preventDefault();
