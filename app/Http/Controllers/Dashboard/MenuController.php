@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\MenuRequest;
+use App\Http\Requests\Dashboard\MenuRequest;
 use App\Models\Category;
 use App\Models\Menu;
 use Illuminate\Http\Request;

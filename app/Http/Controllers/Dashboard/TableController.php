@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TableRequest;
+use App\Http\Requests\Dashboard\TableRequest;
 use App\Models\Table;
 use Illuminate\Http\Request;
 

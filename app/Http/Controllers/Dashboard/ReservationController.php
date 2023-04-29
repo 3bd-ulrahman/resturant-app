@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\ReservationRequest;
 use App\Models\Reservation;
+use App\Models\Table;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -13,7 +15,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservations = Reservation::all();
+        $reservations = Reservation::with('table')->get();
 
         return view('dashboard.reservations.index', compact('reservations'));
     }
@@ -23,15 +25,20 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        return view('dashboard.reservations.create');
+        $tables = Table::all();
+
+        return view('dashboard.reservations.create', compact('tables'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ReservationRequest $request)
     {
-        //
+        // return $request->all();
+        Reservation::create($request->validated());
+
+        return to_route('dashboard.reservations.index');
     }
 
     /**
