@@ -5,8 +5,7 @@ use App\Http\Controllers\Dashboard\MenuController;
 use App\Http\Controllers\Dashboard\ReservationController;
 use App\Http\Controllers\Dashboard\TableController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Reservation;
-use Illuminate\Support\Carbon;
+use App\Models\Table;
 use Illuminate\Support\Facades\Route;
 
 

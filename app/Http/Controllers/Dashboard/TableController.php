@@ -14,7 +14,7 @@ class TableController extends Controller
      */
     public function index()
     {
-        $tables = Table::all();
+        $tables = Table::query()->paginate(PAGINATION);
 
         return view('dashboard.tables.index', compact('tables'));
     }
@@ -34,7 +34,7 @@ class TableController extends Controller
     {
         Table::create($request->validated());
 
-        return to_route('dashboard.tables.index');
+        return to_route('dashboard.tables.index')->with('success', 'Table created successfully');
     }
 
     /**
@@ -60,7 +60,7 @@ class TableController extends Controller
     {
         $table->update($request->validated());
 
-        return to_route('dashboard.tables.index');
+        return to_route('dashboard.tables.index')->with('success', 'Table updated successfully');
     }
 
     /**
@@ -68,8 +68,9 @@ class TableController extends Controller
      */
     public function destroy(Table $table)
     {
+        $table->reservations()->delete();
         $table->delete();
 
-        return to_route('dashboard.tables.index');
+        return to_route('dashboard.tables.index')->with('danger', 'Table deleted successfully');
     }
 }

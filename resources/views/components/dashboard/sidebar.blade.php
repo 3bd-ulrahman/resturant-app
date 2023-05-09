@@ -1,24 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-
-  <title>{{ config('app.name', 'Laravel') }}</title>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.bunny.net">
-  <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-  <!-- Scripts -->
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="font-sans antialiased">
-
-  <div class="flex-col w-full md:flex md:flex-row md:min-h-screen">
-
-    <div @click.away="open = false"
+<div @click.away="open = false"
       class="flex flex-col flex-shrink-0 w-full text-gray-700 bg-slate-100 md:w-64 dark:text-gray-200 dark:bg-gray-800"
       x-data="{ open: false }">
       <div class="flex flex-row items-center justify-between flex-shrink-0 px-8 py-4">
@@ -38,29 +18,26 @@
         </button>
       </div>
       <nav :class="{ 'block': open, 'hidden': !open }" class="flex-grow px-4 pb-4 md:block md:pb-0 md:overflow-y-auto">
-        <x-dashboard.nav-link :href="route('dashboard.categories.index')" :active="request()->routeIs('dashboard')">
-          Categories
+        <x-dashboard.nav-link :href="route('dashboard.categories.index')" :active="request()->routeIs('admin.categories.index')">
+          {{ __('Categories') }}
         </x-dashboard.nav-link>
-        <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-gray-200 rounded-lg dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-          href="{{ route('dashboard.categories.index') }}">
-          Categories
-        </a>
-        <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-          href="{{ route('dashboard.menus.index') }}">
-          Menus
-        </a>
-        <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-          href="{{ route('dashboard.tables.index') }}">
-          Tables
-        </a>
-        <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-          href="{{ route('dashboard.reservations.index') }}">
-          Reservation
-        </a>
+
+        <x-dashboard.nav-link :href="route('dashboard.menus.index')" :active="request()->routeIs('admin.menus.index')">
+          {{ __('Menus') }}
+        </x-dashboard.nav-link>
+
+        <x-dashboard.nav-link :href="route('dashboard.tables.index')" :active="request()->routeIs('admin.tables.index')">
+          {{ __('Tables') }}
+        </x-dashboard.nav-link>
+
+        <x-dashboard.nav-link :href="route('dashboard.reservations.index')" :active="request()->routeIs('admin.reservation.index')">
+          {{ __('Reservation') }}
+        </x-dashboard.nav-link>
+
         <div @click.away="open = false" class="relative" x-data="{ open: false }">
           <button @click="open = !open"
             class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark:bg-transparent dark:focus:text-white dark:hover:text-white dark:focus:bg-gray-600 dark:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
-            <span>Dropdown</span>
+            <span>{{ Auth::user()->name }}</span>
             <svg fill="currentColor" viewBox="0 0 20 20" :class="{ 'rotate-180': open, 'rotate-0': !open }"
               class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
               <path fill-rule="evenodd"
@@ -88,12 +65,3 @@
         </div>
       </nav>
     </div>
-
-    <main class="m-2 p-8">
-      {{ $slot }}
-    </main>
-
-  </div>
-
-</body>
-</html>

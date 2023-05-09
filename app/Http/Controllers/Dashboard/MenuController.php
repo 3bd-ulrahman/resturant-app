@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\MenuRequest;
 use App\Models\Category;
 use App\Models\Menu;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,7 +16,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus = Menu::all();
+        $menus = Menu::query()->paginate(PAGINATION);
 
         return view('dashboard.menus.index', compact('menus'));
     }
@@ -44,7 +43,7 @@ class MenuController extends Controller
             $menu->categories()->attach($request->categories_id);
         });
 
-        return to_route('dashboard.menus.index');
+        return to_route('dashboard.menus.index')->with('success', 'Menu created successfully');
     }
 
     /**
@@ -81,7 +80,7 @@ class MenuController extends Controller
             $menu->categories()->sync($request->categories_id);
         DB::commit();
 
-        return to_route('dashboard.menus.index');
+        return to_route('dashboard.menus.index')->with('success', 'Menu updated successfully');
     }
 
     /**
@@ -94,6 +93,6 @@ class MenuController extends Controller
         $menu->categories()->detach();
         $menu->delete();
 
-        return to_route('dashboard.menus.index');
+        return to_route('dashboard.menus.index')->with('danger', 'Menu deleted successfully');
     }
 }

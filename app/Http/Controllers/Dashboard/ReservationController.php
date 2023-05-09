@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Enums\TableStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\ReservationRequest;
 use App\Models\Reservation;
@@ -15,7 +16,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservations = Reservation::with('table')->get();
+        $reservations = Reservation::with('table')->paginate(PAGINATION);
 
         return view('dashboard.reservations.index', compact('reservations'));
     }
@@ -25,7 +26,7 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        $tables = Table::all();
+        $tables = Table::where('status', TableStatus::Available)->get();
 
         return view('dashboard.reservations.create', compact('tables'));
     }
@@ -35,10 +36,9 @@ class ReservationController extends Controller
      */
     public function store(ReservationRequest $request)
     {
-        // return $request->all();
         Reservation::create($request->validated());
 
-        return to_route('dashboard.reservations.index');
+        return to_route('dashboard.reservations.index')->with('success', 'Reservation created successfully');
     }
 
     /**

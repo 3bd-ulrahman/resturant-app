@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->integer('guest_number');
-            $table->dateTime('date');
+            $table->date('date');
             $table->timestamps();
         });
     }

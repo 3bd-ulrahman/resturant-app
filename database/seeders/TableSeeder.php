@@ -18,7 +18,7 @@ class TableSeeder extends Seeder
         for ($i=0; $i < 10; $i++) {
             array_push($tables, [
                 'name' => fake()->name(),
-                'guest_number' => fake()->numberBetween(1, 100),
+                'guest_number' => fake()->numberBetween(1, 20),
                 'status' => fake()->randomElement(['pending', 'available', 'unavailable']),
                 'location' => fake()->randomElement(['front', 'inside', 'outside'])
             ]);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Dashboard;
 
+use App\Models\Table;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Carbon;
 
@@ -16,12 +17,30 @@ class ReservationRequest extends FormRequest
     }
 
     /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array<string, string>
+     */
+    public function attributes(): array
+    {
+        return [
+            'table_id' => 'table',
+        ];
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
     public function rules(): array
     {
+        $table = Table::query()->find($this->table_id)->load([
+            'reservations' => function ($query) {
+                $query->whereBetween('date', [now()->format('Y-m-d'), now()->addWeek()->format('Y-m-d')]);
+            }
+        ]);
+
         return [
             'first_name' => ['required'],
             'last_name' => ['required'],
@@ -30,23 +49,35 @@ class ReservationRequest extends FormRequest
             'date' => [
                 'required',
                 'date',
-                'after_or_equal:now',
-                'before_or_equal:+1 week 23.00',
-                function (string $attribute, mixed $value, \Closure $fail) {
-                    $pickupDate = Carbon::parse($value);
-                    $pickupTime = Carbon::createFromTime($pickupDate->hour, $pickupDate->minute, $pickupDate->second);
-
-                    // when the restaurant is open
-                    $earliestTime = Carbon::createFromTimeString('17:00:00');
-                    $lastTime = Carbon::createFromTimeString('23:00:00');
-
-                    return $pickupTime->between($earliestTime, $lastTime) ?
-                        true :
-                        $fail("The time should be between 17.00 and 23.00.");
+                'after_or_equal:today',
+                'before_or_equal:+1 week',
+            ],
+            'guest_number' => [
+                'required',
+                'integer',
+                'max:20',
+                function (string $attribute, mixed $value, \Closure $fail) use ($table) {
+                    if ($value > $table->guest_number) {
+                        $fail("Please choose the table base on guests.");
+                    }
                 }
             ],
-            'guest_number' => ['required', 'integer'],
-            'table_id' => ['required', 'integer', 'exists:tables,id']
+            'table_id' => [
+                'required',
+                'integer',
+                function (string $attribute, mixed $value, \Closure $fail) use ($table) {
+                    if (!$table) {
+                        $fail("The :attribute is invalid.");
+                    }
+                },
+                function (string $attribute, mixed $value, \Closure $fail) use ($table) {
+                    foreach ($table->reservations as $reservation) {
+                        if ($reservation->date == $this->date) {
+                            $fail("The :attribute is reserved for this day.");
+                        }
+                    }
+                }
+            ]
         ];
     }
 }

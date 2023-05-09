@@ -23,7 +23,7 @@ class ReservationSeeder extends Seeder
                 'email' => fake()->email(),
                 'phone' => fake()->phoneNumber(),
                 'guest_number' => fake()->numberBetween(1, 100),
-                'date' => fake()->date('Y-m-d\TH:i:s')
+                'date' => fake()->date('Y-m-d')
             ]);
         }
 

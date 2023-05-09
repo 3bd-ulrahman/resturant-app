@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::query()->paginate(PAGINATION);
 
         return view('dashboard.categories.index', compact('categories'));
     }
@@ -33,7 +33,7 @@ class CategoryController extends Controller
 
         Category::create(['image' => $image] + $validated);
 
-        return to_route('dashboard.categories.index');
+        return to_route('dashboard.categories.index')->with('success', 'Category created successfully');
     }
 
     public function show(Category $category)
@@ -61,14 +61,15 @@ class CategoryController extends Controller
 
         $category->update(['image' => $image] + $validated);
 
-        return to_route('dashboard.categories.index');
+        return to_route('dashboard.categories.index')->with('success', 'Category updated successfully');
     }
 
     public function destroy(Category $category)
     {
         Storage::disk(STORAGE_DISK)->delete($category->image);
+        $category->menus()->detach();
         $category->delete();
 
-        return to_route('dashboard.categories.index');
+        return to_route('dashboard.categories.index')->with('danger', 'Category deleted successfully');
     }
 }
