@@ -5,7 +5,6 @@ use App\Http\Controllers\Dashboard\MenuController;
 use App\Http\Controllers\Dashboard\ReservationController;
 use App\Http\Controllers\Dashboard\TableController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Table;
 use Illuminate\Support\Facades\Route;
 
 
@@ -14,7 +13,7 @@ Route::get('index', function () {
 })->name('index');
 
 Route::get('home', function () {
-    return view('dashboard.index');
+    return view('dashboard.home');
 })->name('home');
 
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

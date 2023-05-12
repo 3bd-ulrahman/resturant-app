@@ -8,5 +8,5 @@ define('PAGINATION', 10);
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('web.home');
 });
