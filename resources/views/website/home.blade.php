@@ -1,4 +1,4 @@
-<x-web.app-layout>
+<x-website.app-layout>
   <div
   class="container max-w-lg px-4 py-32 mx-auto text-left bg-center bg-no-repeat bg-cover md:max-w-none md:text-center"
   style="background-image: url('https://cdn.pixabay.com/photo/2016/11/18/14/39/beans-1834984_960_720.jpg')">
@@ -121,6 +121,7 @@
   </div>
   <div class="container w-full px-5 py-6 mx-auto">
     <div class="grid lg:grid-cols-4 gap-y-6">
+
       <div class="max-w-xs mx-4 mb-2 rounded-lg shadow-lg">
         <img class="w-full h-48" src="https://cdn.pixabay.com/photo/2014/11/05/15/57/salmon-518032_960_720.jpg"
           alt="Image" />
@@ -137,6 +138,7 @@
           <span class="text-xl text-green-600">$20.0</span>
         </div>
       </div>
+
       <div class="max-w-xs mx-4 mb-2 rounded-lg shadow-lg">
         <img class="w-full h-48" src="https://cdn.pixabay.com/photo/2010/12/13/10/25/canape-2802_960_720.jpg"
           alt="Image" />
@@ -187,6 +189,7 @@
           <span class="text-xl text-green-600">$4.00</span>
         </div>
       </div>
+
       <div class="max-w-xs mx-4 mb-2 rounded-lg shadow-lg">
         <img class="w-full h-48" src="https://cdn.pixabay.com/photo/2015/04/08/13/13/food-712665_960_720.jpg"
           alt="Image" />
@@ -307,4 +310,4 @@
     </div>
   </div>
 </section>
-</x-web.app-layout>
+</x-website.app-layout>

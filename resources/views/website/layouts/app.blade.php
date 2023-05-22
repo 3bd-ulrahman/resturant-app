@@ -44,11 +44,11 @@
           class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 hover:text-green-400">
           Home
         </a>
-        <a href=""
+        <a href="{{ route('categories.index') }}"
           class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 hover:text-green-400">
           Categories
         </a>
-        <a href=""
+        <a href="{{ route('menus.index') }}"
           class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 hover:text-green-400">
           Our Menu
         </a>

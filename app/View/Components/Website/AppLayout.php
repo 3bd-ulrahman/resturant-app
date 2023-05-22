@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Web;
+namespace App\View\Components\Website;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
@@ -12,6 +12,6 @@ class AppLayout extends Component
      */
     public function render(): View
     {
-        return view('web.layouts.app');
+        return view('website.layouts.app');
     }
 }

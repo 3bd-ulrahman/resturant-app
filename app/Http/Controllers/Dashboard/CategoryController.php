@@ -23,6 +23,7 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->file('image'));
         $validated = $request->validate([
             'name' => ['required'],
             'description' => ['required'],
