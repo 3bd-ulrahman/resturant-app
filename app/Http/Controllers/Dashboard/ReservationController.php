@@ -16,7 +16,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservations = Reservation::with('table')->paginate(PAGINATION);
+        $reservations = Reservation::query()->with('table')->paginate(PAGINATION);
 
         return view('dashboard.reservations.index', compact('reservations'));
     }
@@ -38,7 +38,8 @@ class ReservationController extends Controller
     {
         Reservation::create($request->validated());
 
-        return to_route('dashboard.reservations.index')->with('success', 'Reservation created successfully');
+        return to_route('dashboard.reservations.index')
+            ->with('success', 'Reservation created successfully');
     }
 
     /**
@@ -54,15 +55,20 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
-        //
+        $tables = Table::where('status', TableStatus::Available)->get();
+
+        return view('dashboard.reservations.edit', compact('reservation', 'tables'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Reservation $reservation)
+    public function update(ReservationRequest $request, Reservation $reservation)
     {
-        //
+        $reservation->update($request->validated());
+
+        return to_route('dashboard.reservations.index')
+            ->with('success', 'Reservation updated successfully');
     }
 
     /**
@@ -70,6 +76,8 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        //
+        $reservation->delete();
+        return to_route('dashboard.reservations.index')
+            ->with('success', 'Reservation deleted successfully');
     }
 }

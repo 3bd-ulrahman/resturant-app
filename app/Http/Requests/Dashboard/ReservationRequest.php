@@ -4,7 +4,6 @@ namespace App\Http\Requests\Dashboard;
 
 use App\Models\Table;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Carbon;
 
 class ReservationRequest extends FormRequest
 {
@@ -37,7 +36,7 @@ class ReservationRequest extends FormRequest
     {
         $table = Table::query()->find($this->table_id)->load([
             'reservations' => function ($query) {
-                $query->whereBetween('date', [now()->format('Y-m-d'), now()->addWeek()->format('Y-m-d')]);
+                $query->where('date', $this->date);
             }
         ]);
 
@@ -45,7 +44,8 @@ class ReservationRequest extends FormRequest
             'first_name' => ['required'],
             'last_name' => ['required'],
             'email' => ['required', 'email'],
-            'phone' => ['required', 'numeric'],
+            // regex match Egypt phone numbers
+            'phone' => ['required', 'regex:/^01[0125][0-9]{8}$/'],
             'date' => [
                 'required',
                 'date',
@@ -71,10 +71,8 @@ class ReservationRequest extends FormRequest
                     }
                 },
                 function (string $attribute, mixed $value, \Closure $fail) use ($table) {
-                    foreach ($table->reservations as $reservation) {
-                        if ($reservation->date == $this->date) {
-                            $fail("The :attribute is reserved for this day.");
-                        }
+                    if (count($table->reservations) > 0) {
+                        $fail("The :attribute is reserved for this day.");
                     }
                 }
             ]
