@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Dashboard;
+namespace App\Http\Requests\Website;
 
 use App\Models\Table;
 use Illuminate\Foundation\Http\FormRequest;
@@ -12,31 +12,25 @@ class ReservationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth('admin')->check();
-    }
-
-    /**
-     * Get custom attributes for validator errors.
-     *
-     * @return array<string, string>
-     */
-    public function attributes(): array
-    {
-        return [
-            'table_id' => 'table',
-        ];
+        return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
     public function rules(): array
     {
+        // $table = Table::query()->find($this->table_id)->load([
+        //     'reservations' => function ($query) {
+        //         $query->where('date', $this->date);
+        //     }
+        // ]);
         $table = Table::query()->find($this->table_id)->load([
             'reservations' => function ($query) {
-                $query->where('date', $this->date);
+                $query->where('date', $this->date)
+                    ->whereNot('id', session()->get('reservation')->id);
             }
         ]);
 

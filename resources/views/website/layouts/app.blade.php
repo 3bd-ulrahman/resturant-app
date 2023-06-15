@@ -25,5 +25,7 @@
   </div>
 
   <x-website.footer />
+
+  @stack('scripts')
 </body>
 </html>

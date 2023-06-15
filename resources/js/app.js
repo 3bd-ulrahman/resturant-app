@@ -1,4 +1,6 @@
 import './bootstrap';
+import axios from 'axios';
+
 
 import Alpine from 'alpinejs';
 
@@ -6,8 +8,18 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
+// export default axios;
+
+// check html validate on blure
+let inputs = document.querySelectorAll('input');
+inputs.forEach(function (input) {
+    input.addEventListener('blur', function () {
+        input.reportValidity();
+    });
+});
+
 // preview upload image
-var images = document.querySelectorAll('.image');
+let images = document.querySelectorAll('.image');
 images.forEach(function (element) {
     element.addEventListener("change", function () {
         if (this.files && this.files[0]) {
@@ -33,15 +45,15 @@ options.forEach(function (element) {
 });
 
 // mark input|select as red if it`s validation failed
-var errors = document.querySelectorAll('span[error]');
+var errors = document.querySelectorAll('[error]');
 errors.forEach(function (el) {
-    var input = document.querySelector(`input[name=${el.id}]`);
+    let input = document.querySelector(`input[name=${el.id}]`);
 
     if (input) {
         input.classList.add('border-red-600', 'dark:border-red-400');
     }
 
-    var select = document.querySelector(`select[name=${el.id}]`);
+    let select = document.querySelector(`select[name=${el.id}]`);
 
     if (select) {
         select.classList.add('border-red-600', 'dark:border-red-400');

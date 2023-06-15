@@ -12,7 +12,7 @@
     </div>
     <div class="flex flex-col items-center mt-12 text-center">
       <span class="relative inline-flex w-full md:w-auto">
-        <a href="#_" type="button"
+        <a href="{{ route('reservations.index') }}" type="button"
           class="inline-flex items-center justify-center px-6 py-2 text-base font-bold leading-6 text-white bg-green-600 rounded-full lg:w-full md:w-auto hover:bg-green-500 focus:outline-none">
           Make Your Reservation
         </a>
@@ -211,7 +211,8 @@
           <h2 class="text-3xl font-semibold text-gray-800">Food</h2>
           <p class="mt-2 text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolores deserunt
             ea doloremque natus error, rerum quas odio quaerat nam ex commodi hic, suscipit in a veritatis pariatur
-            minus consequuntur!</p>
+            minus consequuntur!
+          </p>
         </div>
         <div class="flex justify-end mt-4">
           <a href="#" class="text-xl font-medium text-green-500">John Doe</a>
@@ -226,7 +227,8 @@
           <h2 class="text-3xl font-semibold text-gray-800">Food</h2>
           <p class="mt-2 text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolores deserunt
             ea doloremque natus error, rerum quas odio quaerat nam ex commodi hic, suscipit in a veritatis pariatur
-            minus consequuntur!</p>
+            minus consequuntur!
+          </p>
         </div>
         <div class="flex justify-end mt-4">
           <a href="#" class="text-xl font-medium text-green-500">John Doe</a>
@@ -241,7 +243,8 @@
           <h2 class="text-3xl font-semibold text-gray-800">Food</h2>
           <p class="mt-2 text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dolores deserunt
             ea doloremque natus error, rerum quas odio quaerat nam ex commodi hic, suscipit in a veritatis pariatur
-            minus consequuntur!</p>
+            minus consequuntur!
+          </p>
         </div>
         <div class="flex justify-end mt-4">
           <a href="#" class="text-xl font-medium text-green-500">John Doe</a>
