@@ -24,5 +24,6 @@ Route::resources([
     'categories' => CategoryController::class,
     'menus' => MenuController::class,
     'tables' => TableController::class,
-    'reservations' => ReservationController::class
 ]);
+
+Route::resource('reservations', ReservationController::class)->only(['index', 'destroy']);

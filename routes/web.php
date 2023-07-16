@@ -25,9 +25,5 @@ Route::get('categories/{category}', [CategoryController::class, 'show'])->name('
 // Menus
 Route::get('menus', [MenuController::class, 'index'])->name('menus.index');
 
-// Reservations
-Route::get('reservations', [ReservationController::class, 'index'])->name('reservations.index');
-Route::post('reservations', [ReservationController::class, 'store'])->name('reservations.store');
-
 // Table
 Route::get('tables', TableController::class);

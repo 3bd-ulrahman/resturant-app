@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'name' => 'user@gmail.com',
+            'name' => 'user',
             'email' => 'user@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('password')

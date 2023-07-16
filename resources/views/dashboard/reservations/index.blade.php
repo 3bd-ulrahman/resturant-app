@@ -5,13 +5,6 @@
     </h2>
   </x-slot>
 
-  <div class="flex justify-end mb-2">
-    <a href="{{ route('dashboard.reservations.create') }}"
-      class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">
-      New Reservation
-    </a>
-  </div>
-
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
       <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -40,10 +33,10 @@
         @foreach ($reservations as $reservation)
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              {{ $reservation->first_name }} {{ $reservation->last_name }}
+              {{ $reservation->user->name }}
             </th>
             <td class="px-6 py-4">
-              {{ $reservation->email }}
+              {{ $reservation->user->email }}
             </td>
             <td class="px-6 py-4">
               {{ $reservation->date }}
@@ -55,11 +48,6 @@
               {{ $reservation->guest_number }}
             </td>
             <td class="px-6 py-4">
-              <a href="{{ route('dashboard.reservations.edit', $reservation->id) }}"
-                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                Edit
-              </a>
-              &emsp;
               <form action="{{ route('dashboard.reservations.destroy', $reservation->id) }}" method="post"
                 onsubmit="return confirm('Are you sure')" class="inline">
                 @csrf

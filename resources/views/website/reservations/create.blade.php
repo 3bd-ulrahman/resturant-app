@@ -15,72 +15,14 @@
                 @csrf
 
                 <div class="sm:col-span-6">
-                  <label for="first_name" class="block text-sm font-medium text-gray-700">
-                    First Name
-                  </label>
-                  <div class="mt-1">
-                    <input type="text" id="first_name" name="first_name" value="{{ old('first_name', $reservation->first_name ?? '') }}" required
-                      class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                  </div>
-                  @error('first_name')
-                    <span error id="first_name" class="text-sm text-red-400">
-                      {{ $message }}
-                    </span>
-                  @enderror
-                </div>
-
-                <div class="sm:col-span-6">
-                  <label for="last_name" class="block text-sm font-medium text-gray-700">
-                    Last Name
-                  </label>
-                  <div class="mt-1">
-                    <input type="text" id="last_name" name="last_name" value="{{ old('last_name', $reservation->last_name ?? '') }}"
-                      class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                  </div>
-                  @error('last_name')
-                    <span class="text-sm text-red-400">
-                      {{ $message }}
-                    </span>
-                  @enderror
-                </div>
-
-                <div class="sm:col-span-6">
-                  <label for="email" class="block text-sm font-medium text-gray-700"> Email </label>
-                  <div class="mt-1">
-                    <input type="email" id="email" name="email" value="{{ old('email', $reservation->email ?? '') }}"
-                      class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                  </div>
-                  @error('email')
-                    <span class="text-sm text-red-400">
-                      {{ $message }}
-                    </span>
-                  @enderror
-                </div>
-
-                <div class="sm:col-span-6">
-                  <label for="tel_number" class="block text-sm font-medium text-gray-700">
-                    Phone number
-                  </label>
-                  <div class="mt-1">
-                    <input type="tel" id="phone" name="phone" value="{{ old('phone', $reservation->phone ?? '') }}"
-                      class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                  </div>
-                  @error('phone')
-                    <span class="text-sm text-red-400">
-                      {{ $message }}
-                    </span>
-                  @enderror
-                </div>
-
-                <div class="sm:col-span-6">
                   <label for="res_date" class="block text-sm font-medium text-gray-700"> Reservation
                     Date
                   </label>
                   <div class="mt-1">
-                    <input
+                    <input type="date" id="date" name="date" min="{{ now()->format('Y-m-d') }}"
+                      max="{{ now()->addWeek()->format('Y-m-d') }}" value="{{ old('date', $reservation->date ?? '') }}"
                       class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                      type="date" id="date" name="date" min="{{ now()->format('Y-m-d') }}"
-                      max="{{ now()->addWeek()->format('Y-m-d') }}" value="{{ old('date', $reservation->date ?? '') }}" />
+                    />
                   </div>
                   @error('date')
                     <span class="text-sm text-red-400">
