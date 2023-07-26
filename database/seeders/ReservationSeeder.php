@@ -15,9 +15,9 @@ class ReservationSeeder extends Seeder
     {
         $reservations = [];
 
-        for ($i=0; $i < 10; $i++) {
+        for ($i=0; $i < 20; $i++) {
             array_push($reservations, [
-                'user_id' => 1,
+                'user_id' => fake()->numberBetween(1, 5),
                 'table_id' => rand(1, 10),
                 'guest_number' => fake()->numberBetween(1, 50),
                 'date' => fake()->date('Y-m-d')

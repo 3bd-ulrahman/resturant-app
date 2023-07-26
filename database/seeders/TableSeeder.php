@@ -15,7 +15,7 @@ class TableSeeder extends Seeder
     {
         $tables = [];
 
-        for ($i=0; $i < 10; $i++) {
+        for ($i=0; $i < 20; $i++) {
             array_push($tables, [
                 'name' => fake()->name(),
                 'guest_number' => fake()->numberBetween(1, 20),

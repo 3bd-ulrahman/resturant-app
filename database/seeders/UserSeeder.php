@@ -19,5 +19,18 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('password')
         ]);
+
+        $users = [];
+
+        for ($i=0; $i < 5; $i++) {
+            array_push($users, [
+                'name' => fake()->name(),
+                'email' => fake()->email(),
+                'email_verified_at' => now(),
+                'password' => fake()->password()
+            ]);
+        }
+
+        User::insert($users);
     }
 }
